@@ -1,7 +1,9 @@
-import 'package:darklightneumorphism/page/neuPress.dart';
-import 'package:darklightneumorphism/page/neuSwitch.dart';
-import 'package:darklightneumorphism/widgets/button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
+import '/page/neuPress.dart';
+import '/page/neuSwitch.dart';
+import '/widgets/button.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -29,11 +31,12 @@ class _HomePageState extends State<HomePage> {
       backgroundColor: Colors.grey.shade300,
       appBar: AppBar(
         title: Text(
-          'Dark and Light Neumorphism Example',
+          'Neumorphism',
           style: TextStyle(
             color: Colors.grey[850],
             fontWeight: FontWeight.bold,
             wordSpacing: 2,
+            fontSize: 25,
           ),
         ),
         centerTitle: true,
@@ -45,22 +48,53 @@ class _HomePageState extends State<HomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             NeuButton(
-              height: 100,
-              width: 100,
+              height: isButtonPressed ? 100 : 110,
+              width: isButtonPressed ? 100 : 110,
               borderRadius: 20,
               isButtonPressed: isButtonPressed,
               icon: Icon(Icons.touch_app_rounded,
-                  size: 80,
+                  size: isButtonPressed ? 77 : 80,
                   color: isButtonPressed ? Colors.grey.shade500 : Colors.black),
-              onTap: () => Navigator.push(
+              onLongTap: () => Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => DarkNeu(),
+                  builder: (context) => const DarkNeu(),
                 ),
               ),
-              onLongTap: buttonPressed,
+              onTap: buttonPressed,
             ),
-            SizedBox(
+            const SizedBox(
+              height: 40,
+            ),
+            AnimatedScale(
+              duration: const Duration(milliseconds: 300),
+              scale: isButtonPressed ? 1 : 0.9,
+              curve: Curves.linearToEaseOut,
+              child: isButtonPressed
+                  ? Text(
+                      'Long Press the button to go to the next page',
+                      style: TextStyle(
+                        fontSize: 15,
+                        color: isButtonPressed
+                            ? Colors.grey[850]
+                            : Colors.grey[300],
+                        fontWeight: FontWeight.bold,
+                        wordSpacing: 2,
+                      ),
+                      textAlign: TextAlign.center,
+                    )
+                  : Text(
+                      'Tap to see press animation',
+                      style: TextStyle(
+                        fontSize: 15,
+                        color: Colors.grey[850],
+                        fontWeight: FontWeight.bold,
+                        wordSpacing: 2,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+            ),
+            const SizedBox(
               height: 40,
             ),
             NeuButton(
@@ -69,15 +103,15 @@ class _HomePageState extends State<HomePage> {
               borderRadius: 20,
               isButtonPressed: isButtonPressed,
               icon: Icon(Icons.dark_mode_rounded,
-                  size: 80,
+                  size: isButtonPressed ? 77 : 80,
                   color: isButtonPressed ? Colors.grey.shade500 : Colors.black),
-              onTap: () => Navigator.push(
+              onLongTap: () => Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => NeuSwitch(),
+                  builder: (context) => const NeuSwitch(),
                 ),
               ),
-              onLongTap: buttonPressed,
+              onTap: buttonPressed,
             ),
           ],
         ),

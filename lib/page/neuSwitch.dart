@@ -65,16 +65,16 @@ class _NeuSwitchState extends State<NeuSwitch> {
                   size: 80, color: darkMode ? Colors.white : Colors.black),
               decoration: BoxDecoration(
                 color: darkMode ? Colors.grey.shade800 : Colors.grey.shade300,
-                borderRadius: BorderRadius.all(Radius.circular(50)),
+                borderRadius: const BorderRadius.all(const Radius.circular(50)),
                 boxShadow: [
                   BoxShadow(
                       color: darkMode ? Colors.black54 : Colors.grey.shade500,
-                      offset: Offset(4.0, 4.0),
+                      offset: const Offset(4.0, 4.0),
                       blurRadius: 15.0,
                       spreadRadius: 1.0),
                   BoxShadow(
                       color: darkMode ? Colors.grey.shade800 : Colors.white,
-                      offset: Offset(-4.0, -4.0),
+                      offset: const Offset(-4.0, -4.0),
                       blurRadius: 15.0,
                       spreadRadius: 1.0),
                 ],
@@ -84,10 +84,10 @@ class _NeuSwitchState extends State<NeuSwitch> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Padding(
-                  padding: EdgeInsets.only(top: 50, right: 3),
+                  padding: const EdgeInsets.only(top: 50, right: 3),
                   child: FlatButton(
                     color: Colors.white,
-                    child: Text(
+                    child: const Text(
                       'Light',
                       style: TextStyle(color: Colors.black),
                     ),
@@ -98,13 +98,16 @@ class _NeuSwitchState extends State<NeuSwitch> {
                     },
                   ),
                 ),
+                SizedBox(
+                  width: 5,
+                ),
                 Padding(
-                  padding: EdgeInsets.only(top: 50, left: 3),
+                  padding: const EdgeInsets.only(top: 50, left: 3),
                   child: FlatButton(
                     color: Colors.black,
-                    child: Text(
+                    child: const Text(
                       'Dark',
-                      style: TextStyle(color: Colors.white),
+                      style: const TextStyle(color: Colors.white),
                     ),
                     onPressed: () {
                       setState(() {
