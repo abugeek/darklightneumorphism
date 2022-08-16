@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../widgets/toggle.dart';
+
 class NeuSwitch extends StatefulWidget {
   const NeuSwitch({Key? key}) : super(key: key);
 
@@ -9,6 +11,7 @@ class NeuSwitch extends StatefulWidget {
 
 class _NeuSwitchState extends State<NeuSwitch> {
   bool darkMode = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -80,43 +83,36 @@ class _NeuSwitchState extends State<NeuSwitch> {
                 ],
               ),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.only(top: 50, right: 3),
-                  child: FlatButton(
-                    color: Colors.white,
-                    child: const Text(
-                      'Light',
-                      style: TextStyle(color: Colors.black),
-                    ),
-                    onPressed: () {
-                      setState(() {
-                        darkMode = false;
-                      });
-                    },
-                  ),
-                ),
-                SizedBox(
-                  width: 5,
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 50, left: 3),
-                  child: FlatButton(
-                    color: Colors.black,
-                    child: const Text(
-                      'Dark',
-                      style: const TextStyle(color: Colors.white),
-                    ),
-                    onPressed: () {
-                      setState(() {
-                        darkMode = true;
-                      });
-                    },
-                  ),
-                ),
+            SizedBox(height: 30),
+            AnimatedToggle(
+              values: [
+                'Light',
+                'Dark',
               ],
+              buttonColor:
+                  darkMode ? Colors.grey.shade800 : Colors.grey.shade300,
+              backgroundColor:
+                  darkMode ? Color.fromARGB(255, 25, 24, 29) : Colors.white,
+              textColor: darkMode ? Colors.white : Colors.black,
+              shadows: [
+                BoxShadow(
+                    color: darkMode ? Colors.black54 : Colors.grey.shade500,
+                    offset: Offset(4.0, 4.0),
+                    blurRadius: 15.0,
+                    spreadRadius: 1.0),
+                BoxShadow(
+                    color: darkMode ? Colors.grey.shade800 : Colors.white,
+                    offset: Offset(-4.0, -4.0),
+                    blurRadius: 15.0,
+                    spreadRadius: 1.0),
+              ],
+              onToggleCallback: (index) {
+                setState(
+                  () {
+                    darkMode = !darkMode;
+                  },
+                );
+              },
             ),
           ],
         ),
